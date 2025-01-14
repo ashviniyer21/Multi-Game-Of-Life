@@ -6,15 +6,16 @@ from board import Board
 from render import WINDOW_WIDTH, WINDOW_HEIGHT, BLACK, drawGrid, gridCellFromMousePos
 
 def main():
-    rows = 20
-    columns = 20
-    random_board = np.random.randint(0, 2, size=(rows, columns))
+    rows = 40
+    columns = 40
+    factions = 6
+    random_board = np.random.randint(1, factions + 1, size=(rows, columns))
     global SCREEN, CLOCK
     pygame.init()
     SCREEN = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
     CLOCK = pygame.time.Clock()
     SCREEN.fill(BLACK)
-    board = Board(random_board)
+    board = Board(random_board, factions)
 
     progress = False
 
@@ -42,7 +43,7 @@ def main():
         if progress:
             board.update_board()
         pygame.display.update()
-        CLOCK.tick(60)
+        CLOCK.tick(30)
     
 
 if __name__ == "__main__":
